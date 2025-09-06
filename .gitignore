@@ -18,7 +18,8 @@ build/
 *.iml
 *.ipr
 out/
-*.iml
+*/out/
+out/artifacts/
 
 ### Eclipse ###
 .classpath

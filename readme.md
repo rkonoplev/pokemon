@@ -87,12 +87,12 @@ Number of Pokémon is: 4
 ```
 The JAR file will be created at:
 ```bash
-build/libs/pokemon-1.0.0.jar
+build/libs/pokemon-hunter.jar
 ```
 
 ### 5. Run the JAR directly
 ```bash
-java -jar build/libs/pokemon-1.0.0.jar
+java -jar build/libs/pokemon-hunter.jar
 ```
 
 ---
