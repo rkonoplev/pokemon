@@ -1,55 +1,45 @@
 package org.example;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Handles hunter movement across the infinite grid.
+ */
 class HunterMoving {
 
-    static int hunterMoving(char[] insertedWay){
-        // Initial position of hunter
-        int visitedRooms = 1;
-        int x = 0;
-        int y = 0;
-        int xn;
-        int yn;
-        Point location = new Point(x, y);
-        // Array for visited rooms
-        List<Point> listOfRooms = new ArrayList<>();
-        // Write the position of hunter (same that room) to array
-        listOfRooms.add(new Point(0,0));
-        for (char oneSymbol : insertedWay) {
-                switch (oneSymbol) {
-                    case 'N' -> {
-                        xn = location.getLocation().x;
-                        yn = location.getLocation().y;
-                        location.move(xn, yn + 1);
-                    }
-                    case 'S' -> {
-                        xn = location.getLocation().x;
-                        yn = location.getLocation().y;
-                        location.move(xn, yn - 1);
-                    }
-                    case 'E' -> {
-                        xn = location.getLocation().x;
-                        yn = location.getLocation().y;
-                        location.move(xn + 1, yn);
-                    }
-                    case 'O' -> {
-                        xn = location.getLocation().x;
-                        yn = location.getLocation().y;
-                        location.move(xn - 1, yn);
-                    }
-                    default ->
-                            throw new IllegalArgumentException("Incorrect direction value");
-                }
+    /**
+     * Position on the grid, immutable (Java record).
+     */
+    private record Position(int x, int y) {
 
-                if (!listOfRooms.contains(location)) {
-                    xn = location.getLocation().x;
-                    yn = location.getLocation().y;
-                    listOfRooms.add(new Point(xn, yn));
-                    ++visitedRooms;
-                }
+        Position move(char direction) {
+            return switch (direction) {
+                case 'N' -> new Position(x, y + 1);
+                case 'S' -> new Position(x, y - 1);
+                case 'E' -> new Position(x + 1, y);
+                case 'O' -> new Position(x - 1, y);
+                default -> throw new IllegalArgumentException("Incorrect direction value: " + direction);
+            };
         }
-        return visitedRooms;
+    }
+
+    /**
+     * Simulates Ash's movement and counts unique visited positions (Pokémon caught).
+     *
+     * @param insertedWay array of directions
+     * @return number of unique Pokémon caught
+     */
+    static int hunterMoving(char[] insertedWay) {
+        Set<Position> visited = new HashSet<>();
+        Position location = new Position(0, 0);
+        visited.add(location);
+
+        for (char oneSymbol : insertedWay) {
+            location = location.move(oneSymbol);
+            visited.add(location);
+        }
+
+        return visited.size();
     }
 }

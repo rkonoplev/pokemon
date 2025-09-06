@@ -1,30 +1,31 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class HunterMovingTest {
 
     @Test
-    void hunterShouldToMoveInCorrectDirection() {
-
+    void hunterShouldMoveInCorrectDirection() {
         char[] insertedWayExample = {'N'};
-        int visitedRoomsValue = 2;
+        int visitedRoomsValue = 2; // initial + one move
 
-        int visitedRoomsOneOrMoreTimesExample = HunterMoving.hunterMoving(insertedWayExample);
+        int result = HunterMoving.hunterMoving(insertedWayExample);
 
-        assertEquals (visitedRoomsOneOrMoreTimesExample, visitedRoomsValue);
+        assertEquals(visitedRoomsValue, result);
     }
+
     @Test
     void shouldReturnIllegalArgumentExceptionWhenDirectionIsWrong() {
-
         assertThrows(IllegalArgumentException.class,
-                () -> {
-                    char[] insertedWayExample = {'1'};
-                    HunterMoving.hunterMoving(insertedWayExample);
-                });
+                () -> HunterMoving.hunterMoving(new char[]{'1'}));
     }
 
+    @Test
+    void shouldCountUniquePositionsOnly() {
+        char[] insertedWay = {'N', 'S'}; // goes north, then back to start
+        int result = HunterMoving.hunterMoving(insertedWay);
+
+        assertEquals(2, result); // start + north
+    }
 }

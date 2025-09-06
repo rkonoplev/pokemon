@@ -1,0 +1,2 @@
+// Root project name, visible in IntelliJ IDEA and Gradle
+rootProject.name = "pokemon-hunter"

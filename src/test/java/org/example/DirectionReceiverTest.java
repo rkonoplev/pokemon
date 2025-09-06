@@ -1,40 +1,35 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
-import org.testng.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 
 class DirectionReceiverTest {
 
     @Test
     void shouldReturnCorrectCheckedDirection() {
-        String str0 =  "NNNO";
-        final char[] expect = { 'N', 'N', 'N', 'O' };
-        char[] expectedResult = DirectionReceiver.directionCheck(str0);
+        String str0 = "NNNO";
+        final char[] expect = {'N', 'N', 'N', 'O'};
+        char[] result = DirectionReceiver.directionCheck(str0);
 
-        Assert.assertEquals (expectedResult, expect);
-        Assert.assertNotNull(expectedResult);
-
-
-    }
-    @Test
-    void shouldReturnIllegalArgumentExceptionWhenDirectionIsNull() {
-
-        Assert.assertThrows(IllegalArgumentException.class,
-                () -> {
-                    String str1 = "";
-                    DirectionReceiver.directionCheck(str1);
-                });
+        assertArrayEquals(expect, result);
+        assertNotNull(result);
     }
 
     @Test
-    void shouldReturnIllegalArgumentExceptionWhenDirectionIsLong() {
+    void shouldReturnIllegalArgumentExceptionWhenDirectionIsEmpty() {
+        assertThrows(IllegalArgumentException.class,
+                () -> DirectionReceiver.directionCheck(""));
+    }
 
+    @Test
+    void shouldReturnIllegalArgumentExceptionWhenDirectionIsTooLong() {
+        assertThrows(IllegalArgumentException.class,
+                () -> DirectionReceiver.directionCheck("N".repeat(1001)));
+    }
 
-        Assert.assertThrows (IllegalArgumentException.class,
-                () -> {
-                    String str2 = "N".repeat(1001);
-                    DirectionReceiver.directionCheck(str2);
-                });
-
+    @Test
+    void shouldReturnIllegalArgumentExceptionWhenDirectionHasInvalidChar() {
+        assertThrows(IllegalArgumentException.class,
+                () -> DirectionReceiver.directionCheck("NXS"));
     }
 }
