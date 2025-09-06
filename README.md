@@ -26,13 +26,32 @@ NSNNO
 Number of Pokémon is: 4
 ```
 
+**Explanation:** Ash starts at (0,0), moves North to (0,1), South back to (0,0), North to (0,1) again, North to (0,2), then West to (-1,2). Unique positions visited: (0,0), (0,1), (0,2), (-1,2) = 4 Pokémon caught.
+
+---
+
+## 🧭 Input Format
+
+**Valid Directions:**
+- `N` - North (move up: y + 1)
+- `S` - South (move down: y - 1)  
+- `E` - East (move right: x + 1)
+- `O` - West (move left: x - 1) *[Oeste in Portuguese]*
+
+**Input Rules:**
+- Non-empty string
+- Maximum 1000 characters
+- Only contains N, S, E, O characters
+- Case-sensitive (uppercase only)
+
 ---
 
 ## ⚙️ Technology Stack
 
-- Java 21  
+- Java 21 with Records and Switch Expressions
 - Gradle 8 (via Wrapper, no local installation needed)  
-- JUnit 5 (for testing)  
+- JUnit 5 Platform with comprehensive test coverage
+- Maven support (alternative build system)  
 
 ---
 
@@ -97,12 +116,36 @@ java -jar build/libs/pokemon-hunter.jar
 
 ---
 
+## 🧪 Test Coverage
+
+### DirectionReceiverTest (7 tests)
+- Valid input parsing and conversion
+- Null input validation
+- Empty string validation  
+- Input length validation (>1000 characters)
+- Invalid character detection
+- Single character input handling
+- All valid directions (N, S, E, O)
+
+### HunterMovingTest (7 tests)
+- Basic movement validation
+- Invalid direction handling
+- Unique position counting
+- Problem statement example (NSNNO → 4)
+- Empty path edge case
+- Complex movement patterns
+- Repeated visit scenarios
+
+**Total: 14 comprehensive test cases** covering all functionality and edge cases.
+
+---
+
 ## 🧩 Solution Description
 
-- **DirectionReceiver**: validates input (non-empty, ≤1000 characters, only N, S, E, O).
-- **HunterMoving**: simulates Ash's path on an infinite 2D grid using an immutable record `Position(int x, int y)` and a `HashSet` to track visited positions.
+- **DirectionReceiver**: validates input (non-empty, ≤1000 characters, only N, S, E, O). Handles null inputs and invalid characters.
+- **HunterMoving**: simulates Ash's path on an infinite 2D grid using an immutable record `Position(int x, int y)` and a `HashSet` to track visited positions. Counts unique houses visited.
 - **Program**: entry point – reads input, calls the logic, prints the number of Pokémon caught.
-- **JUnit tests**: check correct input parsing, exception handling, and Pokémon counting logic.
+- **Comprehensive JUnit tests**: 14 test cases covering input validation, edge cases, movement logic, and the exact problem example (NSNNO → 4).
 
 ---
 
