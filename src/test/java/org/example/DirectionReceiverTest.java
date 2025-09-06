@@ -32,4 +32,22 @@ class DirectionReceiverTest {
         assertThrows(IllegalArgumentException.class,
                 () -> DirectionReceiver.directionCheck("NXS"));
     }
+
+    @Test
+    void shouldReturnIllegalArgumentExceptionWhenDirectionIsNull() {
+        assertThrows(IllegalArgumentException.class,
+                () -> DirectionReceiver.directionCheck(null));
+    }
+
+    @Test
+    void shouldHandleSingleCharacterInput() {
+        char[] result = DirectionReceiver.directionCheck("N");
+        assertArrayEquals(new char[]{'N'}, result);
+    }
+
+    @Test
+    void shouldHandleAllValidDirections() {
+        char[] result = DirectionReceiver.directionCheck("NSEO");
+        assertArrayEquals(new char[]{'N', 'S', 'E', 'O'}, result);
+    }
 }
