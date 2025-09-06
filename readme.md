@@ -107,4 +107,4 @@ java -jar build/libs/pokemon-1.0.0.jar
 ---
 
 ## 📜 License
-MIT License – See LICENSE for details.
+MIT License – See  [LICENSE](LICENSE) git for details.
