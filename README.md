@@ -14,6 +14,10 @@ Then, he moves to the house immediately to the north, south, east or west of whe
 
 ---
 
+## Task Description
+Full project description and problem statement can be found in [docs/TASK_DESCRIPTION.md](docs/TASK_DESCRIPTION.md)
+
+
 ## 💡 Example
 
 **Input:**
@@ -69,6 +73,8 @@ Number of Pokémon is: 4
 | `├── .gitignore`                            | Git ignore file                    |
 | `├── README.md`                             | Project documentation              |
 | `├── LICENSE`                               | MIT License file                   |
+| `├── docs/`                                 | Project documentation              |
+| `│   └── TASK_DESCRIPTION.md`               | Complete task description and code |
 | `├── .gradle/`                              | Gradle cache (ignored in Git)      |
 | `├── build/`                                | Build output (ignored in Git)      |
 | `├── target/`                               | Maven build output (ignored in Git) |
@@ -85,22 +91,27 @@ Number of Pokémon is: 4
 
 ## ▶️ How to Run
 
-### 1. Build the project
+### 1. Clean the project
+```bash
+./gradlew clean
+```
+
+### 2. Build the project
 ```bash
 ./gradlew build
 ```
 
-### 2. Run the program
+### 3. Run the program
 ```bash
 ./gradlew run
 ```
 
-### 3. Run the tests
+### 4. Run the tests
 ```bash
 ./gradlew test
 ```
 
-### 4. Build an executable JAR
+### 5. Build an executable JAR
 ```bash
 ./gradlew jar
 ```
@@ -109,7 +120,7 @@ The JAR file will be created at:
 build/libs/pokemon-hunter.jar
 ```
 
-### 5. Run the JAR directly
+### 6. Run the JAR directly
 ```bash
 java -jar build/libs/pokemon-hunter.jar
 ```
