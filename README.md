@@ -106,7 +106,7 @@ Number of Pokémon is: 4
 ./gradlew run
 ```
 
-### 4. Run the tests
+### 4. Run the unit tests
 ```bash
 ./gradlew test
 ```
@@ -114,10 +114,6 @@ Number of Pokémon is: 4
 ### 5. Build an executable JAR
 ```bash
 ./gradlew jar
-```
-The JAR file will be created at:
-```bash
-build/libs/pokemon-hunter.jar
 ```
 
 ### 6. Run the JAR directly
